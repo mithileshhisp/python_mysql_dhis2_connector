@@ -60,10 +60,10 @@ def get_org_unit_and_option_data(PermSubDistrictId, PermVillageId):
 
     return org_unit_id, option_name
 
-def get_org_unit_data(PermSubDistrictId):
+def get_org_unit_data(PermDistrictId):
     filters = [
-        f"attributeValues.attribute.id:eq:l38VgCtdLFD",
-        f"attributeValues.value:eq:{PermSubDistrictId}"
+        f"attributeValues.attribute.id:eq:l38VgCtdLFD&level=3&paging=false",
+        f"attributeValues.value:eq:{PermDistrictId}"
     ]
 
     url_with_filters = f"{org_unit_api_url}?fields=id,name,level,attributeValues&filter={'&filter='.join(filters)}"
@@ -114,7 +114,7 @@ def create_enrollment(enrollment_data, org_unit_id,enrollment_date):
     #print(f"enrollment_data {enrollment_data} " )
 
     responseJson = response.json()
-    #print(f"enrollment_response 1 -- { responseJson }" )
+    print(f"enrollment_response 1 -- { responseJson }" )
 
     return response
 
@@ -122,7 +122,7 @@ def check_existing_tei(beneficiary_mapping_reg_id):
     # for 104 program
     # tei_search_url = f"{enrollment_endpoint}?ouMode=ALL&program=vyQPQ07JB9M&filter=HKw3ToP2354:eq:{beneficiary_reg_id}"
     # for 1097 program
-    
+    #https://links.hispindia.org/amrit/api/trackedEntityInstances.json?ouMode=ALL&program=vyQPQ07JB9M&filter=HKw3ToP2354:eq:7393430
     tei_search_url = f"{enrollment_endpoint}?ouMode=ALL&program=vyQPQ07JB9M&filter=HKw3ToP2354:eq:{beneficiary_mapping_reg_id}"
 
     response = requests.get(tei_search_url, auth=HTTPBasicAuth(dhis2_username, dhis2_password))
@@ -140,7 +140,8 @@ def get_tei_data(dhis2_base_url, dhis2_username, dhis2_password, BeneficiaryRegI
         return tei_data_cache[BeneficiaryRegID]
 
     attribute_value = BeneficiaryRegID
-    
+    #"https://links.hispindia.org/amrit/api/trackedEntityInstances.json?ouMode=ALL&program=hQUeRtU70wj&fields=trackedEntityInstance,orgUnit,enrollments[program,enrollment,orgUnitName]&filter=HKw3ToP2354:EQ:5773626"
+    #https://links.hispindia.org/amrit/api/trackedEntityInstances.json?ouMode=ALL&program=hQUeRtU70wj&fields=trackedEntityInstance,orgUnit,enrollments[program,enrollment,orgUnitName]&filter=HKw3ToP2354:EQ:1
     url = f"{dhis2_base_url}trackedEntityInstances.json?ouMode=ALL&program=vyQPQ07JB9M&fields=trackedEntityInstance,orgUnit&filter=HKw3ToP2354:EQ:{attribute_value}"
     #print( url )
     response = requests.get(url, auth=(dhis2_username, dhis2_password))
@@ -163,15 +164,27 @@ def get_tei_data(dhis2_base_url, dhis2_username, dhis2_password, BeneficiaryRegI
         return None
 
 
-def construct_event_payload(tei_data, CreatedDate, BenCallID, CallID, AgeOnVisit, Is1097, IsOutbound, 
+def construct_event_payload(tei_data, CreatedDate, BenCallID, CallID, AgeOnVisit, IsOutbound, 
                             CategoryName, SubCategoryName, PrescriptionID, ReceivedRoleName,
-                            CallDurationInSeconds, CallType, CallGroupType, Algorithm):
+                            CallDurationInSeconds, CallType, CallGroupType, Diasease, data_dict ):
     
 
     orgUnit = tei_data["orgUnit"]
     tei_uid = tei_data["trackedEntityInstance"]
 
-    event_payload = {
+    #key_to_check = Diasease
+
+    temp_Diasease = ''
+    if Diasease is not None and Diasease != "null":
+
+        if data_dict.get(Diasease) is not None:
+            #print(f"Key '{key_to_check}' exists.")
+            temp_Diasease = data_dict.get(Diasease)
+        else:
+            #print(f"Key '{Diasease}' does not exist.")
+            temp_Diasease = ''
+            
+        event_payload = {
         "program": "vyQPQ07JB9M",
         "orgUnit": orgUnit,
         "eventDate": CreatedDate,
@@ -179,27 +192,56 @@ def construct_event_payload(tei_data, CreatedDate, BenCallID, CallID, AgeOnVisit
         "status": "ACTIVE",
         "trackedEntityInstance": tei_uid,
         "dataValues": [
-            {"dataElement": "hsbXpo83f4I", "value": BenCallID},
-            {"dataElement": "dVQRpxXgMEd", "value": CallID},
-            {"dataElement": "P5a5E6m8llj", "value": AgeOnVisit},
-            {"dataElement": "srcAwXCmgbO", "value": Is1097},
-            {"dataElement": "IZ8umfwfXSm", "value": IsOutbound},
-            {"dataElement": "sSWrwFFrd94", "value": CategoryName},
-            {"dataElement": "C5CFVWUYfeQ", "value": SubCategoryName},
-            {"dataElement": "CBZkvkRRnOl", "value": PrescriptionID},
-            {"dataElement": "hUDunUrmF14", "value": ReceivedRoleName},
-            {"dataElement": "ZTNtr3RK0kh", "value": CallDurationInSeconds},
-            {"dataElement": "ioNKjuWD3s9", "value": CallType},
-            {"dataElement": "CBZkvkRRnOl", "value": PrescriptionID},
-            {"dataElement": "UUKDfFwHMfA", "value": CallGroupType},
-            {"dataElement": "CJXPDQOnSy7", "value": Algorithm},
+            {"dataElement": "hsbXpo83f4I", "value": assign_value_if_not_null(BenCallID)},
+            {"dataElement": "dVQRpxXgMEd", "value": assign_value_if_not_null(CallID)},
+            {"dataElement": "P5a5E6m8llj", "value": assign_value_if_not_null(AgeOnVisit)},
+            {"dataElement": "IZ8umfwfXSm", "value": assign_value_if_not_null(IsOutbound)},
+            {"dataElement": "sSWrwFFrd94", "value": assign_value_if_not_null(CategoryName)},
+            {"dataElement": "C5CFVWUYfeQ", "value": assign_value_if_not_null(SubCategoryName)},
+            {"dataElement": "CBZkvkRRnOl", "value": assign_value_if_not_null(PrescriptionID)},
+            {"dataElement": "hUDunUrmF14", "value": assign_value_if_not_null(ReceivedRoleName)},
+            {"dataElement": "ZTNtr3RK0kh", "value": assign_value_if_not_null(CallDurationInSeconds)},
+            {"dataElement": "ioNKjuWD3s9", "value": assign_value_if_not_null(CallType)},
+            {"dataElement": "CBZkvkRRnOl", "value": assign_value_if_not_null(PrescriptionID)},
+            {"dataElement": "UUKDfFwHMfA", "value": assign_value_if_not_null(CallGroupType)},
+            {"dataElement": "CJXPDQOnSy7", "value": temp_Diasease}
         ]
-
     }
+        #print(f"event_payload: {event_payload}" )
+    else:
+        event_payload = {
+        "program": "vyQPQ07JB9M",
+        "orgUnit": orgUnit,
+        "eventDate": CreatedDate,
+        "programStage": "ISSSjurI0kD",
+        "status": "ACTIVE",
+        "trackedEntityInstance": tei_uid,
+        "dataValues": [
+            {"dataElement": "hsbXpo83f4I", "value": assign_value_if_not_null(BenCallID)},
+            {"dataElement": "dVQRpxXgMEd", "value": assign_value_if_not_null(CallID)},
+            {"dataElement": "P5a5E6m8llj", "value": assign_value_if_not_null(AgeOnVisit)},
+            {"dataElement": "IZ8umfwfXSm", "value": assign_value_if_not_null(IsOutbound)},
+            {"dataElement": "sSWrwFFrd94", "value": assign_value_if_not_null(CategoryName)},
+            {"dataElement": "C5CFVWUYfeQ", "value": assign_value_if_not_null(SubCategoryName)},
+            {"dataElement": "CBZkvkRRnOl", "value": assign_value_if_not_null(PrescriptionID)},
+            {"dataElement": "hUDunUrmF14", "value": assign_value_if_not_null(ReceivedRoleName)},
+            {"dataElement": "ZTNtr3RK0kh", "value": assign_value_if_not_null(CallDurationInSeconds)},
+            {"dataElement": "ioNKjuWD3s9", "value": assign_value_if_not_null(CallType)},
+            {"dataElement": "CBZkvkRRnOl", "value": assign_value_if_not_null(PrescriptionID)},
+            {"dataElement": "UUKDfFwHMfA", "value": assign_value_if_not_null(CallGroupType)}
+        ]
+    }
+    #print(f"event_payload: {event_payload}" )
+
     return event_payload
 
+def assign_value_if_not_null(value):
+    if value is not None and value != "null":
+        return value
+    else:
+        return ""
 
-def create_events_in_dhis2(dhis2_base_url, dhis2_username, dhis2_password, multiple_events_payload,BeneficiaryRegID, BenVisitID):
+def create_events_in_dhis2(dhis2_base_url, dhis2_username, dhis2_password, multiple_events_payload,BeneficiaryRegID, BenCallID):
     #print(f"multiple_events_payload : {multiple_events_payload}")
     response = requests.post(
         f"{dhis2_base_url}events",
@@ -212,12 +254,12 @@ def create_events_in_dhis2(dhis2_base_url, dhis2_username, dhis2_password, multi
         #event_ids = [item.get("event") for item in response.json().get("response", {}).get("importSummaries", [])[0].get("importCount",{}).get("imported")]
         #print(f"Events created successfully. Event IDs: {response.json()}")
         event_count = response.json().get("response", {}).get("importSummaries", [])[0].get("importCount",{}).get("imported")
-        print(f"Events created successfully. BenVisitID : {BenVisitID} . BeneficiaryRegID : {BeneficiaryRegID}. Event count: {event_count}" ,f"imported event : {event_uid}")
-
-        logging.info(f"Event created successfully . BenVisitID : {BenVisitID} . BeneficiaryRegID : {BeneficiaryRegID}. Event count: {event_count}. Event uid: {event_uid}" )
+        print(f"Events created successfully. BenCallID : {BenCallID} . BeneficiaryRegID : {BeneficiaryRegID}. Event count: {event_count} . imported event : {event_uid}")
+        logging.info(f"Events created successfully. BenCallID : {BenCallID} . BeneficiaryRegID : {BeneficiaryRegID}. Event count: {event_count}. imported event : {event_uid}")
+        #logging.info(f"Event created successfully . BenVisitID : {BenVisitID} . BeneficiaryRegID : {BeneficiaryRegID}. Event count: {event_count}. Event uid: {event_uid}" )
         #logging.info("MySQL connection closed")
 
     else:
         print(f"Failed to create events. Error: {response.text}")
-        logging.error(f"Failed to create enrollment . BenVisitID : {BenVisitID} . BeneficiaryRegID : {BeneficiaryRegID}. Status code: {response.status_code} . error details: {response.json()}")
+        logging.error(f"Failed to create events . BenCallID : {BenCallID} . BeneficiaryRegID : {BeneficiaryRegID}. Status code: {response.status_code} . error details: {response.json()}")
 
