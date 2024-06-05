@@ -1,6 +1,6 @@
 # main_script.py
 
-# Author: sourabhB
+# Author: mithilesh
 import logging
 # import pandas as pd
 from concurrent.futures import ThreadPoolExecutor
@@ -22,14 +22,14 @@ def assign_value_if_not_null(value):
         return ""
 
 def create_enrollment_for_row(row):
-    BeneficiaryID, MappingBenRegId, BeneficiaryRegID, CreatedDate, FirstName, MiddleName, LastName, Gender, DOB, VanID, DistrictId = row
+    BeneficiaryID, MappingBenRegId, BeneficiaryRegID, CreatedDate, FirstName, MiddleName, LastName, Gender, DOB, VanID = row
 
     CreatedDate = CreatedDate.strftime("%Y-%m-%d")
 
-    existing_tei = check_existing_tei(MappingBenRegId)
-
     # org_unit_id, option_name = get_org_unit_and_option_data(PermSubDistrictId, PermVillageId)
-    org_unit_id = get_org_unit_data(DistrictId)
+    org_unit_id = get_org_unit_data(VanID)
+
+    existing_tei = check_existing_tei(org_unit_id, MappingBenRegId)
 
     if existing_tei:
         print(f"TEI already exists for BeneficiaryRegID {MappingBenRegId}. orgUnit Id {org_unit_id} . Skipping.")
@@ -53,7 +53,7 @@ def create_enrollment_for_row(row):
         "enrollments": [
             {
                 "status": "ACTIVE",
-                "program": "vyQPQ07JB9M",
+                "program": "hQUeRtU70wj",
                 "enrollmentDate": CreatedDate,
                 "incidentDate": CreatedDate
             }
@@ -72,36 +72,39 @@ try:
     mysql_connection = connect_to_mysql()
 
     if mysql_connection.is_connected():
-        logging.info("104 enrollment query")
-        print("104 enrollment query")
+        logging.info("bayer TM enrollment query")
+        print("bayer TM db enrollment query")
         print("Connected to MySQL database")
         logging.info("Connected to MySQL database")
         mysql_cursor = mysql_connection.cursor()
         mysql_query = f"""
 
-        SELECT mb.BeneficiaryID,i_ben_mapping.BenRegId AS mappingBenRegId, i_ben_details.BeneficiaryRegID,
-        CAST(i_ben_mapping.CreatedDate AS DATE) As CreatedDate,i_ben_details.FirstName,i_ben_details.MiddleName,
-        i_ben_details.LastName,i_ben_details.Gender,
-
-        IF(i_ben_details.DOB IS NOT NULL,DATE_FORMAT(i_ben_details.DOB, '%Y-01-01'), NULL) AS DOB,
-        i_ben_mapping.VanID,
-        IF(i_ben_address.PermDistrictId IS NOT NULL, i_ben_address.PermDistrictId, 'EMR001') AS DistrictId
-
+        SELECT mb.BeneficiaryID, i_ben_mapping.BenRegId AS MappingBenRegId, i_ben_details.BeneficiaryRegID, 
+        CAST(i_ben_mapping.CreatedDate AS DATE) AS CreatedDate, i_ben_details.FirstName,
+        i_ben_details.MiddleName, i_ben_details.LastName, i_ben_details.Gender,
+        IF(i_ben_details.DOB IS NOT NULL, DATE_FORMAT(i_ben_details.DOB, '%Y-01-01'), NULL) AS DOB,
+        bayerVan.VanID 
+        
         FROM db_identity.i_beneficiarymapping i_ben_mapping
 
         INNER join db_identity.m_beneficiaryregidmapping_vtbl mb on mb.BenRegId=i_ben_mapping.BenRegId
-        INNER JOIN db_identity.i_beneficiarydetails_vtbl i_ben_details ON i_ben_details.BeneficiaryDetailsId = i_ben_mapping.BenDetailsId
-        INNER JOIN db_identity.i_beneficiaryaddress_vtbl i_ben_address ON i_ben_address.BenAddressID = i_ben_mapping.BenAddressId
 
-        WHERE i_ben_mapping.BenRegId IS NOT NULL 
-        AND i_ben_address.PermDistrictId IS NULL AND i_ben_mapping.VanID = 3 AND
-        i_ben_mapping.CreatedDate between '2024-01-01 00:00:00' and '2024-03-31 23:59:59'
-        ORDER BY i_ben_mapping.BenRegId ASC;
+        INNER JOIN db_identity.i_beneficiarydetails_vtbl i_ben_details ON 
+        i_ben_details.BeneficiaryDetailsId = i_ben_mapping.BenDetailsId
+
+        INNER JOIN db_iemr.m_van bayerVan ON  bayerVan.VanID = db_identity.i_ben_mapping.VanID
+
+        WHERE i_ben_mapping.BenRegId IS NOT NULL AND bayerVan.ProviderServiceMapID = 1
+        AND i_ben_mapping.CreatedDate between '2022-01-01 00:00:00' and '2024-12-31 23:59:59'
+        ORDER by MappingBenRegId ASC;
 
         """
         mysql_cursor.execute(mysql_query)
         mysql_rows = mysql_cursor.fetchall()
+        logging.info(f"mysql_rows size {len(mysql_rows)}")
+        print(f"mysql_rows size {len(mysql_rows)}")
         for row in mysql_rows:
+            #print(f"mysql_rows {row}")
             create_enrollment_for_row(row)
 
 
@@ -111,6 +114,7 @@ try:
 
 except Exception as e:
     logging.error(f"Error: {str(e)}")
+    print(f"Error: {str(e)}")
 finally:
     if 'mysql_cursor' in locals():
         mysql_cursor.close()

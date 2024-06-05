@@ -1,13 +1,13 @@
 #!/bin/bash
 
 # Navigate to the directory where main.py is located
-cd /home/psmri/mysql_dhis2_connector_amrti-104
+cd /home/psmri/bayer_tm_mysql_dhis2_connector_amrit
 
 # Activate virtual environment if needed (replace 'venv/bin/activate' with your venv path)
 # source venv/bin/activate
 
 # Run the main.py script
-python3 main_script_104-event.py
+python3 main_script_bayertm-enrollment.py
 
 # Deactivate virtual environment if activated
 # deactivate
