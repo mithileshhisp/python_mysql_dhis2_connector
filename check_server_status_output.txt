@@ -1,0 +1,71 @@
+
+System Resource Usage Report: 2024-06-11 18:16:50 | CPU Usage: 0.0% | Total Memory: 15972.45 MB | Available Memory: 6115.22 MB | Used Memory: 6360.81 MB | Memory Usage: 61.7%
+System Resource Usage Report: 2024-06-11 18:18:41 | CPU Usage: 0.0% | Total Memory: 15972.45 MB | Available Memory: 6114.78 MB | Used Memory: 6361.21 MB | Memory Usage: 61.7%
+System Resource Usage Report: 2024-06-11 18:20:44 | CPU Usage: 0.0% | Total Memory: 15972.45 MB | Available Memory: 6114.76 MB | Used Memory: 6361.23 MB | Memory Usage: 61.7%
+System Resource Usage Report: 2024-06-11 18:21:58 | CPU Usage: 0.0% | Total Memory: 15972.45 MB | Available Memory: 6114.58 MB | Used Memory: 6361.44 MB | Memory Usage: 61.7%
+System Resource Usage Report: 2024-06-11 18:22:41 | CPU Usage: 0.0% | Total Memory: 15972.45 MB | Available Memory: 6114.53 MB | Used Memory: 6361.48 MB | Memory Usage: 61.7%
+System Resource Usage Report: 2024-06-11 18:23:47 | CPU Usage: 0.0% | Total Memory: 15972.45 MB | Available Memory: 6114.27 MB | Used Memory: 6361.75 MB | Memory Usage: 61.7%
+
+System Resource Usage Report: 2024-06-11 18:24:41 | CPU Usage: 0.1% | Total Memory: 15972.45 MB | Available Memory: 6114.21 MB | Used Memory: 6361.77 MB | Memory Usage: 61.7%
+
+System Resource Usage Report: 2024-06-11 18:25:17 | CPU Usage: 0.1% | Total Memory: 15972.45 MB | Available Memory: 6114.62 MB | Used Memory: 6361.40 MB | Memory Usage: 61.7%
+
+System Resource Usage Report: 2024-06-11 18:27:37 | CPU Usage: 0.0% | Total Memory: 15972.45 MB | Available Memory: 6107.80 MB | Used Memory: 6368.23 MB | Memory Usage: 61.8%
+
+System Resource Usage Report: 2024-06-11 18:46:23 | CPU Usage: 0.1% | Total Memory: 15972.45 MB | Available Memory: 6117.30 MB | Used Memory: 6358.69 MB | Memory Usage: 61.7%
+
+System Resource Usage Report: 2024-06-11 18:48:04: CPU Usage: 0.1% | Total Memory: 15972.45 MB | Available Memory: 6120.23 MB | Used Memory: 6355.76 MB | Memory Usage: 61.7%
+
+System Resource Usage Report: 2024-06-12 10:11:12: CPU Usage: 0.1% | Total Memory: 15972.45 MB | Available Memory: 7047.19 MB | Used Memory: 5433.70 MB | Memory Usage: 55.9%
+
+System Resource Usage Report: 2024-06-12 11:07:41: CPU Usage: 0.0% | Total Memory: 15972.45 MB | Available Memory: 6967.21 MB | Used Memory: 5513.67 MB | Memory Usage: 56.4%
+
+System Resource Usage Report: 2024-06-12 11:11:54: CPU Usage: 0.0% | Total Memory: 15972.45 MB | Available Memory: 6933.99 MB | Used Memory: 5547.06 MB | Memory Usage: 56.6%
+
+System Resource Usage Report: 2024-06-12 11:16:29: CPU Usage: 0.1% | Total Memory: 15972.45 MB | Available Memory: 6927.01 MB | Used Memory: 5554.18 MB | Memory Usage: 56.6%
+
+System Resource Usage Report: 2024-06-12 11:17:58: CPU Usage: 0.0% | Total Memory: 15972.45 MB | Available Memory: 6926.66 MB | Used Memory: 5554.55 MB | Memory Usage: 56.6%
+
+System Resource Usage Report: 2024-06-12 11:36:45: CPU Usage: 0.1% | Total Memory: 15972.45 MB | Available Memory: 6918.61 MB | Used Memory: 5562.59 MB | Memory Usage: 56.7%
+
+System Resource Usage Report: 2024-06-12 11:58:57: CPU Usage: 0.0% | Total Memory: 15972.45 MB | Available Memory: 6919.14 MB | Used Memory: 5561.96 MB | Memory Usage: 56.7%
+
+System Resource Usage Report: 2024-06-12 12:07:36: CPU Usage: 0.0% | Total Memory: 15972.45 MB | Available Memory: 6908.00 MB | Used Memory: 5573.18 MB | Memory Usage: 56.8%
+
+System Resource Usage Report: 2024-06-12 12:08:13: CPU Usage: 0.1% | Total Memory: 15972.45 MB | Available Memory: 6902.16 MB | Used Memory: 5579.03 MB | Memory Usage: 56.8%
+
+System Resource Usage Report: 2024-06-12 12:08:47: CPU Usage: 0.0% | Total Memory: 15972.45 MB | Available Memory: 6902.19 MB | Used Memory: 5579.00 MB | Memory Usage: 56.8%
+
+System Resource Usage Report: 2024-06-12 12:37:26: CPU Usage: 0.3% | Total Memory: 15972.45 MB | Available Memory: 6835.95 MB | Used Memory: 5645.69 MB | Memory Usage: 57.2%
+
+System Resource Usage Report: 2024-06-12 13:14:52: CPU Usage: 0.0% | Total Memory: 15972.45 MB | Available Memory: 6658.41 MB | Used Memory: 5823.57 MB | Memory Usage: 58.3%
+
+System Resource Usage Report: 2024-06-12 14:15:51: CPU Usage: 0.1% | Total Memory: 15972.45 MB | Available Memory: 6639.23 MB | Used Memory: 5842.74 MB | Memory Usage: 58.4%
+
+    System Resource Usage Report: 2024-06-12 14:23:27: CPU Usage: 6.2% | Total Memory: 15972.45 MB | Available Memory: 6631.57 MB | Used Memory: 5850.20 MB | Memory Usage: 58.5%
+	System Resource Usage Report: 2024-06-12 14:24:33: CPU Usage: 11.3% | Total Memory: 15972.45 MB | Available Memory: 6621.74 MB | Used Memory: 5860.00 MB | Memory Usage: 58.5%
+	System Resource Usage Report: 2024-06-12 14:41:41: CPU Usage: 0.0% | Total Memory: 15972.45 MB | Available Memory: 6363.25 MB | Used Memory: 6118.46 MB | Memory Usage: 60.2%
+	System Resource Usage Report: 2024-06-12 14:42:17: CPU Usage: 0.1% | Total Memory: 15972.45 MB | Available Memory: 6366.28 MB | Used Memory: 6115.45 MB | Memory Usage: 60.1%
+    System Resource Usage Report: 2024-06-12 14:42:46: CPU Usage: 0.1% | Total Memory: 15972.45 MB | Available Memory: 6364.09 MB | Used Memory: 6117.64 MB | Memory Usage: 60.2%
+    System Resource Usage Report: 2024-06-12 14:43:34: CPU Usage: 0.1% | Total Memory: 15972.45 MB | Available Memory: 6367.08 MB | Used Memory: 6114.62 MB | Memory Usage: 60.1%
+    System Resource Usage Report: 2024-06-12 14:43:40: CPU Usage: 0.0% | Total Memory: 15972.45 MB | Available Memory: 6367.08 MB | Used Memory: 6114.62 MB | Memory Usage: 60.1%
+    System Resource Usage Report: 2024-06-12 14:48:37: CPU Usage: 0.0% | Total Memory: 15972.45 MB | Available Memory: 6334.89 MB | Used Memory: 6146.82 MB | Memory Usage: 60.3%
+    System Resource Usage Report: 2024-06-12 14:50:09: CPU Usage: 0.1% | Total Memory: 15972.45 MB | Available Memory: 6334.18 MB | Used Memory: 6147.54 MB | Memory Usage: 60.3%
+    System Resource Usage Report: 2024-06-12 14:52:30: CPU Usage: 0.0% | Total Memory: 15972.45 MB | Available Memory: 6333.48 MB | Used Memory: 6148.21 MB | Memory Usage: 60.3%
+    System Resource Usage Report: 2024-06-12 14:53:12: CPU Usage: 0.1% | Total Memory: 15972.45 MB | Available Memory: 6335.88 MB | Used Memory: 6145.81 MB | Memory Usage: 60.3%
+    System Resource Usage Report: 2024-06-12 14:59:30: CPU Usage: 0.1% | Total Memory: 15972.45 MB | Available Memory: 6335.07 MB | Used Memory: 6146.65 MB | Memory Usage: 60.3%
+    System Resource Usage Report: 2024-06-12 15:00:26: CPU Usage: 0.1% | Total Memory: 15972.45 MB | Available Memory: 6398.89 MB | Used Memory: 6082.84 MB | Memory Usage: 59.9%
+    System Resource Usage Report: 2024-06-12 15:15:34: CPU Usage: 11.5% | Total Memory: 15972.45 MB | Available Memory: 6384.29 MB | Used Memory: 6097.41 MB | Memory Usage: 60.0%
+    System Resource Usage Report: 2024-06-12 15:15:50: CPU Usage: 11.5% | Total Memory: 15972.45 MB | Available Memory: 6382.84 MB | Used Memory: 6098.84 MB | Memory Usage: 60.0%
+    System Resource Usage Report: 2024-06-12 15:16:10: CPU Usage: 11.4% | Total Memory: 15972.45 MB | Available Memory: 6378.82 MB | Used Memory: 6102.89 MB | Memory Usage: 60.1%
+    System Resource Usage Report: 2024-06-12 15:16:34: CPU Usage: 11.3% | Total Memory: 15972.45 MB | Available Memory: 6380.32 MB | Used Memory: 6101.32 MB | Memory Usage: 60.1%
+    System Resource Usage Report: 2024-06-12 15:16:53: CPU Usage: 11.4% | Total Memory: 15972.45 MB | Available Memory: 6389.24 MB | Used Memory: 6092.44 MB | Memory Usage: 60.0%
+    System Resource Usage Report: 2024-06-12 15:19:28: CPU Usage: 11.6% | Total Memory: 15972.45 MB | Available Memory: 6366.38 MB | Used Memory: 6115.30 MB | Memory Usage: 60.1%
+    System Resource Usage Report: 2024-06-12 15:25:37: CPU Usage: 2.9% | Total Memory: 15972.45 MB | Available Memory: 6296.83 MB | Used Memory: 6184.84 MB | Memory Usage: 60.6%
+    System Resource Usage Report: 2024-06-12 15:25:59: CPU Usage: 11.7% | Total Memory: 15972.45 MB | Available Memory: 6197.58 MB | Used Memory: 6284.09 MB | Memory Usage: 61.2%
+    System Resource Usage Report: 2024-06-12 15:27:26: CPU Usage: 11.5% | Total Memory: 15972.45 MB | Available Memory: 6183.33 MB | Used Memory: 6298.37 MB | Memory Usage: 61.3%
+    System Resource Usage Report: 2024-06-12 15:27:56: CPU Usage: 11.6% | Total Memory: 15972.45 MB | Available Memory: 6176.45 MB | Used Memory: 6305.25 MB | Memory Usage: 61.3%
+    System Resource Usage Report: 2024-06-12 15:28:05: CPU Usage: 11.5% | Total Memory: 15972.45 MB | Available Memory: 6170.71 MB | Used Memory: 6310.96 MB | Memory Usage: 61.4%
+    System Resource Usage Report: 2024-06-12 15:28:22: CPU Usage: 11.6% | Total Memory: 15972.45 MB | Available Memory: 6172.88 MB | Used Memory: 6308.84 MB | Memory Usage: 61.4%
+    System Resource Usage Report: 2024-06-12 15:33:13: CPU Usage: 0.1% | Total Memory: 15972.45 MB | Available Memory: 6178.88 MB | Used Memory: 6302.77 MB | Memory Usage: 61.3%
+    System Resource Usage Report: 2024-06-12 15:40:24: CPU Usage: 25.6% | Total Memory: 15972.45 MB | Available Memory: 6094.07 MB | Used Memory: 6380.38 MB | Memory Usage: 61.8%

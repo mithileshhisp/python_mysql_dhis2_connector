@@ -5,9 +5,15 @@ import data from mysql database to dhis2 using python based script
 
 #### Required Libraries
 
+- ``` this is also use for create txt file and write on text file
+
+- ``` this is also use for  read write on xlsx file 
+
 - `mysql-connector-python`
 - `requests`
 - `pandas`
+
+``` pip install psutil
 
 #### Installation
 
