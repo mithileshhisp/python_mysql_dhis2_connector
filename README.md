@@ -5,7 +5,22 @@ import data from mysql database to dhis2 using python based script
 
 #### Required Libraries
 
+#### Required Libraries
+
 - `mysql-connector-python`
+- `requests`
+- `pandas`
+- `pip install pandas`
+- `pip install openpyxl`
+
+##install python
+sudo apt-get install python
+##install pip
+sudo apt-get install python-pip
+
+pip install mysql-connector-python requests pandas
+
+- `pip install mysql-connector-python`
 - `requests`
 - `pandas`
 
@@ -23,8 +38,7 @@ pip install mysql-connector-python requests pandas
 
 ```bash
 python main_script.py
-```
 
 ### Author
 
-- **mithileshhisp** - [GitHub Profile](https://github.com/mithileshhisp)
+- **sourabhB** - [GitHub Profile](https://github.com/i-sourabh)

@@ -2,11 +2,8 @@
 
 from datetime import datetime
 
-# ODK_API_URL = "*****"
-# ODK_API_URL = "*****"
-DHIS2_API_URL = "****"
+LOG_FILE_ENROLLMENT = datetime.now().strftime("%Y-%m-%d") + "_enrollment.txt"
+LOG_FILE_EVENT = datetime.now().strftime("%Y-%m-%d") + "_event.txt"
 
-ODK_AUTH = ("*****", "*****")
-DHIS2_AUTH = ("****", "*****")
 
-LOG_FILE = datetime.now().strftime("%Y-%m-%d") + "_integration.log"
+
